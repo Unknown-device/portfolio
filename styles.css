@@ -1,59 +1,119 @@
 :root {
-  --primary-bg-color: black;
-  --primary-color: #ffffff;
+  /* hsl (fallback color) */
+  --bg-dark: hsl(222 100% 4%);
+  --bg: hsl(208 100% 5%);
+  --bg-light: hsl(201 100% 6%);
+  --text: hsl(200 100% 91%);
+  --text-muted: hsl(199 70% 65%);
+  --highlight: hsl(194 100% 20%);
+  --border: hsl(197 100% 15%);
+  --border-muted: hsl(201 100% 11%);
+  --primary: hsl(195 99% 52%);
+  --secondary: hsl(23 96% 65%);
+  --danger: hsl(8 79% 66%);
+  --warning: hsl(54 100% 31%);
+  --success: hsl(156 68% 43%);
+  --info: hsl(217 94% 69%);
+  /* oklch */
+  --bg-dark: oklch(0.1 0.075 230);
+  --bg: oklch(0.15 0.075 230);
+  --bg-light: oklch(0.2 0.075 230);
+  --text: oklch(0.96 0.1 230);
+  --text-muted: oklch(0.76 0.1 230);
+  --highlight: oklch(0.5 0.15 230);
+  --border: oklch(0.4 0.15 230);
+  --border-muted: oklch(0.3 0.15 230);
+  --primary: oklch(0.76 0.15 230);
+  --secondary: oklch(0.76 0.15 50);
+  --danger: oklch(0.7 0.15 30);
+  --warning: oklch(0.7 0.15 100);
+  --success: oklch(0.7 0.15 160);
+  --info: oklch(0.7 0.15 260);
 }
-
+body.light {
+  /* hsl (fallback color) */
+  --bg-dark: hsl(200 100% 88%);
+  --bg: hsl(200 100% 93%);
+  --bg-light: hsl(200 100% 98%);
+  --text: hsl(222 100% 8%);
+  --text-muted: hsl(197 100% 15%);
+  --highlight: hsl(198 100% 92%);
+  --border: hsl(193 100% 27%);
+  --border-muted: hsl(193 100% 38%);
+  --primary: hsl(197 100% 15%);
+  --secondary: hsl(24 100% 19%);
+  --danger: hsl(6 60% 41%);
+  --warning: hsl(52 100% 14%);
+  --success: hsl(161 100% 13%);
+  --info: hsl(217 62% 44%);
+  /* oklch */
+  --bg-dark: oklch(0.92 0.075 230);
+  --bg: oklch(0.96 0.075 230);
+  --bg-light: oklch(1 0.075 230);
+  --text: oklch(0.15 0.15 230);
+  --text-muted: oklch(0.4 0.15 230);
+  --highlight: oklch(1 0.15 230);
+  --border: oklch(0.6 0.15 230);
+  --border-muted: oklch(0.7 0.15 230);
+  --primary: oklch(0.4 0.15 230);
+  --secondary: oklch(0.4 0.15 50);
+  --danger: oklch(0.5 0.15 30);
+  --warning: oklch(0.5 0.15 100);
+  --success: oklch(0.5 0.15 160);
+  --info: oklch(0.5 0.15 260);
+}
+* {
+  border: 1px solid red;
+}
 body {
-  background-color: var(--primary-bg-color);
+  background-color: var(--bg-dark);
 }
-.landing {
-  padding-top: 9000em;
+.accent {
+  color: var(--color-accent);
 }
 
 .title {
-  color: var(--primary-color);
-  padding-top: 5em;
-  padding-left: 3em;
+  color: var(--text);
+  padding-top: 5rem;
+  padding-left: 3rem;
   font-family: "IBM Plex Mono", monospace;
-  font-size: 5em;
+  font-size: 5rem;
   font-weight: 600;
-  font-style: normal;
-  width: 10em;
+  width: 15rem;
 }
-.accent {
-  color: cyan;
-}
-
 .subtext {
-  color: rgb(220, 220, 220);
-  padding-top: 1em;
-  padding-left: 10em;
+  color: var(--text);
+  padding-top: 1rem;
+  padding-left: 10rem;
   font-family: "IBM Plex Mono", monospace;
-  font-size: 1.5em;
+  font-size: 1.5rem;
   font-weight: 300;
-  font-style: normal;
-  width: 25em;
+}
+.role {
+  color: var(--text);
+  padding-top: 0.1rem;
+  padding-left: 5rem;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 3rem;
+  font-weight: 500;
 }
 .ascii {
-  color: rgb(220, 220, 220);
+  color: var(--text-muted);
   font-family: "IBM Plex Mono", monospace;
-  font-size: 1.2em;
+  font-size: 1.2rem;
   font-weight: 300;
-  position: absolute;
-  right: 7em;
-  top: 9em;
-  font-style: normal;
 }
+
 .nav {
   width: 100%;
   height: 60px;
   position: fixed;
-  background: rgba(0, 0, 0, 0);
+  background: var(--bg-dark);
 }
 
 .nav ul {
   padding: 20px;
-  padding-right: 9em;
+  padding-right: 9rem;
   list-style: none;
   text-align: right;
 }
@@ -61,19 +121,9 @@ body {
 .nav ul li {
   display: inline-block;
   margin: 0 30px;
-  color: rgb(240, 240, 240);
+  color: var(--text);
   font-family: "IBM Plex Mono", monospace;
-  font-size: 1.5em;
-  font-weight: 500;
-  font-style: normal;
-}
-
-.role {
-  color: rgb(230, 230, 230);
-  padding-top: 0.1em;
-  padding-left: 5em;
-  font-family: "IBM Plex Mono", monospace;
-  font-size: 3em;
+  font-size: 1.5rem;
   font-weight: 500;
   font-style: normal;
 }
