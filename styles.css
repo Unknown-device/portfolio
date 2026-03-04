@@ -6,6 +6,10 @@
 body {
   background-color: var(--primary-bg-color);
 }
+.landing {
+  padding-top: 9000em;
+}
+
 .title {
   color: var(--primary-color);
   padding-top: 5em;
@@ -45,7 +49,6 @@ body {
   height: 60px;
   position: fixed;
   background: rgba(0, 0, 0, 0);
-  filter: opacity(50%);
 }
 
 .nav ul {
