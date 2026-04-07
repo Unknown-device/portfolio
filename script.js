@@ -100,4 +100,72 @@ function setTheme() {
       r.style.setProperty(names[i], themesLight[currentTheme][i]);
   }
 }
+
+function startAsciiEffect() {
+  const el = document.querySelector(".ascii");
+
+  const original = el.textContent;
+  let current = original.split("");
+
+  const noise = "█▓▒░<>/\\[]{}—=+*^?#_";
+
+  function randChar() {
+    return noise[Math.floor(Math.random() * noise.length)];
+  }
+
+  // init noise
+  for (let i = 0; i < current.length; i++) {
+    if (current[i] !== "\n" && current[i] !== " ") {
+      current[i] = randChar();
+    }
+  }
+
+  el.textContent = current.join("");
+
+  let unresolved = [];
+  for (let i = 0; i < original.length; i++) {
+    if (original[i] !== "\n" && original[i] !== " ") {
+      unresolved.push(i);
+    }
+  }
+
+  const interval = setInterval(() => {
+
+    // adaptive noise
+    let noiseCount = unresolved.length > 200 ? 40 : 10;
+    for (let i = 0; i < noiseCount; i++) {
+      const idx = Math.floor(Math.random() * current.length);
+      if (
+        original[idx] !== "\n" &&
+        original[idx] !== " " &&
+        unresolved.includes(idx)
+      ) {
+        current[idx] = randChar();
+      }
+    }
+
+    // adaptive resolve (slows near end)
+    let resolveCount = Math.max(1, Math.floor(unresolved.length * 0.05));
+
+    for (let i = 0; i < resolveCount && unresolved.length; i++) {
+      const r = Math.floor(Math.random() * unresolved.length);
+      const idx = unresolved.splice(r, 1)[0];
+      current[idx] = original[idx];
+    }
+
+    el.textContent = current.join("");
+
+    if (unresolved.length === 0) {
+      el.textContent = original;
+      clearInterval(interval);
+    }
+
+  }, 20);
+}
+document.addEventListener("DOMContentLoaded", () => {
+  startAsciiEffect();
+});
+
 setTheme()
+
+
