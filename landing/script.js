@@ -85,24 +85,8 @@ var themesLight = [
     "oklch(0.5 0.2 160)", "oklch(0.5 0.2 260)"
   ]
 ];
-
-function changeTheme() {
-  currentTheme = Math.floor(Math.random() * 5);;
-  setTheme()
-}
-
-function setTheme() {
-  // Set the theme
-  for (let i = 0; i != 14; i++) {
-    if (mode == true)
-      r.style.setProperty(names[i], themesDark[currentTheme][i]);
-    else
-      r.style.setProperty(names[i], themesLight[currentTheme][i]);
-  }
-}
-
-function startAsciiEffect() {
-  const el = document.querySelector(".ascii");
+function startAsciiEffect(el) {
+  if (!el) return;
 
   const original = el.textContent;
   let current = original.split("");
@@ -113,7 +97,7 @@ function startAsciiEffect() {
     return noise[Math.floor(Math.random() * noise.length)];
   }
 
-  // init noise
+  // init noise (ignore spaces + line breaks)
   for (let i = 0; i < current.length; i++) {
     if (current[i] !== "\n" && current[i] !== " ") {
       current[i] = randChar();
@@ -122,6 +106,7 @@ function startAsciiEffect() {
 
   el.textContent = current.join("");
 
+  // track unresolved
   let unresolved = [];
   for (let i = 0; i < original.length; i++) {
     if (original[i] !== "\n" && original[i] !== " ") {
@@ -129,10 +114,26 @@ function startAsciiEffect() {
     }
   }
 
+  const length = unresolved.length;
+
+  // adaptive speed (formula)
+  const speed = Math.min(150, Math.max(20, 200 - length * 5));
+
+  // initial delay (short text = longer delay)
+  let delayFrames = Math.max(0, Math.floor(10 - length));
+
   const interval = setInterval(() => {
 
+    // delay phase
+    if (delayFrames > 0) {
+      delayFrames--;
+      el.textContent = current.join("");
+      return;
+    }
+
     // adaptive noise
-    let noiseCount = unresolved.length > 200 ? 40 : 10;
+    let noiseCount = Math.max(2, Math.floor(length * 0.1));
+
     for (let i = 0; i < noiseCount; i++) {
       const idx = Math.floor(Math.random() * current.length);
       if (
@@ -144,8 +145,11 @@ function startAsciiEffect() {
       }
     }
 
-    // adaptive resolve (slows near end)
-    let resolveCount = Math.max(1, Math.floor(unresolved.length * 0.05));
+    // adaptive resolve (formula)
+    let resolveCount = Math.max(
+      1,
+      Math.floor(unresolved.length * (length < 50 ? 0.02 : 0.05))
+    );
 
     for (let i = 0; i < resolveCount && unresolved.length; i++) {
       const r = Math.floor(Math.random() * unresolved.length);
@@ -155,17 +159,21 @@ function startAsciiEffect() {
 
     el.textContent = current.join("");
 
+    // finish cleanly
     if (unresolved.length === 0) {
       el.textContent = original;
       clearInterval(interval);
     }
 
-  }, 20);
+  }, speed);
 }
 document.addEventListener("DOMContentLoaded", () => {
-  startAsciiEffect();
+  document.querySelectorAll("body *").forEach(el => {
+    if (el.children.length === 0 && el.textContent.trim().length > 0) {
+      startAsciiEffect(el);
+    }
+  });
 });
-
 setTheme()
 
 
