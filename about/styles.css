@@ -37,7 +37,7 @@ body {
   color: var(--text);
   font-size: clamp(2.5rem, 6vw, 5rem);
   font-weight: 600;
-  align-self: flex-start;
+  justify-self: flex-start;
 }
 
 .role {
@@ -75,6 +75,7 @@ body {
   gap: 2rem;
   list-style: none;
   margin: 3rem 6rem 0 0;
+  max-width: fit-content;
 }
 
 .nav li {
