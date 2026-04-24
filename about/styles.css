@@ -53,6 +53,7 @@ body {
   gap: 2rem;
   list-style: none;
   margin: 3rem 6rem 0 0;
+  max-width: fit-content;
 }
 .nav ul li:first-child {
   margin-right: auto;
