@@ -1,90 +1,93 @@
-let mode = true
-let currentTheme = 4
-function toggle() {
-  mode = !mode;
-  setTheme()
-}
+
+
+let mode = false;
+let currentHue = Math.floor(Math.random() * 360);
+let currentChroma = +(0.08 + Math.random() * 0.12).toFixed(3);
+
 // Get the root element
 var r = document.querySelector(':root');
+
 var names = [
-  '--bg-dark', '--bg', '--bg-light', '--text', '--text-muted', '--highlight', '--border', '--border-muted', '--primary', '--secondary', '--danger', '--warning', '--success', '--info',
-]
-
-var themesDark = [
-  [
-    "oklch(0.1 0.1 185)", "oklch(0.15 0.1 185)", "oklch(0.2 0.1 185)",
-    "oklch(0.96 0.1 185)", "oklch(0.76 0.1 185)", "oklch(0.5 0.2 185)",
-    "oklch(0.4 0.2 185)", "oklch(0.3 0.2 185)", "oklch(0.76 0.2 185)",
-    "oklch(0.76 0.2 5)", "oklch(0.7 0.2 30)", "oklch(0.7 0.2 100)",
-    "oklch(0.7 0.2 160)", "oklch(0.7 0.2 260)"
-  ],
-  [
-    "oklch(0.1 0.1 20)", "oklch(0.15 0.1 20)", "oklch(0.2 0.1 20)",
-    "oklch(0.96 0.1 20)", "oklch(0.76 0.1 20)", "oklch(0.5 0.2 20)",
-    "oklch(0.4 0.2 20)", "oklch(0.3 0.2 20)", "oklch(0.76 0.2 20)",
-    "oklch(0.76 0.2 200)", "oklch(0.7 0.2 30)", "oklch(0.7 0.2 100)",
-    "oklch(0.7 0.2 160)", "oklch(0.7 0.2 260)"
-  ],
-  [
-    "oklch(0.1 0.1 135)", "oklch(0.15 0.1 135)", "oklch(0.2 0.1 135)",
-    "oklch(0.96 0.1 135)", "oklch(0.76 0.1 135)", "oklch(0.5 0.2 135)",
-    "oklch(0.4 0.2 135)", "oklch(0.3 0.2 135)", "oklch(0.76 0.2 135)",
-    "oklch(0.76 0.2 315)", "oklch(0.7 0.2 30)", "oklch(0.7 0.2 100)",
-    "oklch(0.7 0.2 160)", "oklch(0.7 0.2 260)"
-  ],
-  [
-    "oklch(0.1 0.075 264)", "oklch(0.15 0.075 264)", "oklch(0.2 0.075 264)",
-    "oklch(0.96 0.1 264)", "oklch(0.76 0.1 264)", "oklch(0.5 0.15 264)",
-    "oklch(0.4 0.15 264)", "oklch(0.3 0.15 264)", "oklch(0.76 0.15 264)",
-    "oklch(0.76 0.15 84)", "oklch(0.7 0.15 30)", "oklch(0.7 0.15 100)",
-    "oklch(0.7 0.15 160)", "oklch(0.7 0.15 260)"
-  ],
-  [
-    "oklch(0.1 0.1 220)", "oklch(0.15 0.1 220)", "oklch(0.2 0.1 220)",
-    "oklch(0.96 0.1 220)", "oklch(0.76 0.1 220)", "oklch(0.5 0.2 220)",
-    "oklch(0.4 0.2 220)", "oklch(0.3 0.2 220)", "oklch(0.76 0.2 220)",
-    "oklch(0.76 0.2 40)", "oklch(0.7 0.2 30)", "oklch(0.7 0.2 100)",
-    "oklch(0.7 0.2 160)", "oklch(0.7 0.2 260)"
-  ]
+  '--bg-dark', '--bg', '--bg-light', '--text', '--text-muted',
+  '--highlight', '--border', '--border-muted', '--primary',
+  '--secondary', '--danger', '--warning', '--success', '--info',
 ];
 
-var themesLight = [
-  [
-    "oklch(0.92 0.1 185)", "oklch(0.96 0.1 185)", "oklch(1 0.1 185)",
-    "oklch(0.15 0.1 185)", "oklch(0.4 0.1 185)", "oklch(1 0.2 185)",
-    "oklch(0.6 0.2 185)", "oklch(0.7 0.2 185)", "oklch(0.4 0.2 185)",
-    "oklch(0.4 0.2 5)", "oklch(0.5 0.2 30)", "oklch(0.5 0.2 100)",
-    "oklch(0.5 0.2 160)", "oklch(0.5 0.2 260)"
-  ],
-  [
-    "oklch(0.92 0.1 20)", "oklch(0.96 0.1 20)", "oklch(1 0.1 20)",
-    "oklch(0.15 0.1 20)", "oklch(0.4 0.1 20)", "oklch(1 0.2 20)",
-    "oklch(0.6 0.2 20)", "oklch(0.7 0.2 20)", "oklch(0.4 0.2 20)",
-    "oklch(0.4 0.2 200)", "oklch(0.5 0.2 30)", "oklch(0.5 0.2 100)",
-    "oklch(0.5 0.2 160)", "oklch(0.5 0.2 260)"
-  ],
-  [
-    "oklch(0.92 0.1 135)", "oklch(0.96 0.1 135)", "oklch(1 0.1 135)",
-    "oklch(0.15 0.1 135)", "oklch(0.4 0.1 135)", "oklch(1 0.2 135)",
-    "oklch(0.6 0.2 135)", "oklch(0.7 0.2 135)", "oklch(0.4 0.2 135)",
-    "oklch(0.4 0.2 315)", "oklch(0.5 0.2 30)", "oklch(0.5 0.2 100)",
-    "oklch(0.5 0.2 160)", "oklch(0.5 0.2 260)"
-  ],
-  [
-    "oklch(0.92 0.075 264)", "oklch(0.96 0.075 264)", "oklch(1 0.075 264)",
-    "oklch(0.15 0.1 264)", "oklch(0.4 0.1 264)", "oklch(1 0.15 264)",
-    "oklch(0.6 0.15 264)", "oklch(0.7 0.15 264)", "oklch(0.4 0.15 264)",
-    "oklch(0.4 0.15 84)", "oklch(0.5 0.15 30)", "oklch(0.5 0.15 100)",
-    "oklch(0.5 0.15 160)", "oklch(0.5 0.15 260)"
-  ],
-  [
-    "oklch(0.92 0.1 220)", "oklch(0.96 0.1 220)", "oklch(1 0.1 220)",
-    "oklch(0.15 0.1 220)", "oklch(0.4 0.1 220)", "oklch(1 0.2 220)",
-    "oklch(0.6 0.2 220)", "oklch(0.7 0.2 220)", "oklch(0.4 0.2 220)",
-    "oklch(0.4 0.2 40)", "oklch(0.5 0.2 30)", "oklch(0.5 0.2 100)",
-    "oklch(0.5 0.2 160)", "oklch(0.5 0.2 260)"
-  ]
-];
+// Toggle only switches mode (same theme)
+function toggle() {
+  mode = !mode;
+  applyTheme();
+}
+
+// Generate NEW theme
+function changeTheme() {
+  currentHue = Math.floor(Math.random() * 360);
+  currentChroma = +(0.08 + Math.random() * 0.12).toFixed(3);
+  applyTheme();
+}
+
+// Apply current theme
+function applyTheme() {
+  const theme = generateTheme(currentHue, currentChroma, mode);
+  setTheme(theme);
+}
+
+// Generate a single theme
+function generateTheme(hue, chroma, isLight) {
+  const hueSecondary = (hue + 180) % 360;
+
+  const chromaBg = +(chroma * 0.5).toFixed(3);
+  const chromaText = +Math.min(chroma, 0.1).toFixed(3);
+  const chromaAction = +Math.max(chroma, 0.1).toFixed(3);
+  const chromaAlert = +Math.max(chroma, 0.05).toFixed(3);
+
+  if (!isLight) {
+    return [
+      `oklch(0.1 ${chromaBg} ${hue})`,
+      `oklch(0.15 ${chromaBg} ${hue})`,
+      `oklch(0.2 ${chromaBg} ${hue})`,
+      `oklch(0.96 ${chromaText} ${hue})`,
+      `oklch(0.76 ${chromaText} ${hue})`,
+      `oklch(0.5 ${chroma} ${hue})`,
+      `oklch(0.4 ${chroma} ${hue})`,
+      `oklch(0.3 ${chroma} ${hue})`,
+      `oklch(0.76 ${chromaAction} ${hue})`,
+      `oklch(0.76 ${chromaAction} ${hueSecondary})`,
+      `oklch(0.7 ${chromaAlert} 30)`,
+      `oklch(0.7 ${chromaAlert} 100)`,
+      `oklch(0.7 ${chromaAlert} 160)`,
+      `oklch(0.7 ${chromaAlert} 260)`
+    ];
+  } else {
+    return [
+      `oklch(0.92 ${chromaBg} ${hue})`,
+      `oklch(0.96 ${chromaBg} ${hue})`,
+      `oklch(1 ${chromaBg} ${hue})`,
+      `oklch(0.15 ${chromaText} ${hue})`,
+      `oklch(0.4 ${chromaText} ${hue})`,
+      `oklch(1 ${chroma} ${hue})`,
+      `oklch(0.6 ${chroma} ${hue})`,
+      `oklch(0.7 ${chroma} ${hue})`,
+      `oklch(0.4 ${chromaAction} ${hue})`,
+      `oklch(0.4 ${chromaAction} ${hueSecondary})`,
+      `oklch(0.5 ${chromaAlert} 30)`,
+      `oklch(0.5 ${chromaAlert} 100)`,
+      `oklch(0.5 ${chromaAlert} 160)`,
+      `oklch(0.5 ${chromaAlert} 260)`
+    ];
+  }
+}
+
+// Apply to CSS
+function setTheme(theme) {
+  for (let i = 0; i < names.length; i++) {
+    r.style.setProperty(names[i], theme[i]);
+  }
+}
+
+// Initial load
+applyTheme();
+
 function startAsciiEffect(el) {
   if (!el) return;
 
