@@ -1,9 +1,14 @@
-
-
 let mode = false;
 let currentHue = Math.floor(Math.random() * 360);
 let currentChroma = +(0.08 + Math.random() * 0.12).toFixed(3);
+const img = document.getElementById("diagram");
 
+// set diagram based on mode
+function updateImage() {
+  img.src = mode === true ? "Light.svg" : "Dark.svg";
+}
+
+updateImage()
 // Get the root element
 var r = document.querySelector(':root');
 
@@ -17,6 +22,7 @@ var names = [
 function toggle() {
   mode = !mode;
   applyTheme();
+  updateImage()
 }
 
 // Generate NEW theme

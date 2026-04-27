@@ -1,31 +1,22 @@
+/* * { */
+/*  outline: 1px red solid; */
+/*    } */
 body {
   margin: 0;
   background: var(--bg-dark);
+  overflow-x: hidden;
 }
 
-/* Layout */
 .container {
-  position: relative; /* required for z-index */
+  position: relative;
   z-index: 1;
-  min-height: 100vh;
   display: flex;
-  align-items: center;
+  flex-direction: column; /* add this */
   justify-content: center;
+  gap: 2rem;
+  align-items: center;
+  min-height: 90vh;
 }
-
-.hero {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-  max-width: 600px;
-  padding-right: 10rem;
-}
-
-.title {
-  color: var(--text);
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  font-weight: 600;
-  }
 
 .title,
 .role,
@@ -43,30 +34,87 @@ body {
 
 /* Nav */
 .nav {
-  height: 60px;
-  background: transparent;
+  padding: 1rem 2rem;
 }
 
 .nav ul {
   display: flex;
+  padding: 0;
+  margin: 0;
   align-items: center;
-  gap: 2rem;
   list-style: none;
-  margin: 3rem 6rem 0 0;
-  max-width: fit-content;
-}
-.nav ul li:first-child {
-  margin-right: auto;
+  gap: 2rem;
+  width: 100%;
 }
 
-.nav li {
-  font-size: 1.7rem;
-  font-weight: 500;
+.spacer {
+  flex: 1;
 }
 
 .nav a {
-  color: var(--highlight);
+  color: var(--text);
   text-decoration: none;
+}
+ 
+.intro {
+  color: var(--text-muted);
+  margin-top: 3rem;
+  max-width: 1000px;
+}
+
+.intro h2 {
+  color: var(--text);
+
+}
+
+/* Typography base */
+:root {
+  --fs-base: clamp(0.95rem, 1.1vw, 1.1rem);
+  --fs-h2: clamp(1.6rem, 2.5vw, 2.2rem);
+  --fs-h3: clamp(1.1rem, 1.6vw, 1.4rem);
+}
+
+.request-path {
+  max-width: 1000px;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--fs-base);
+  line-height: 1.6;
+}
+
+.request-path h2 {
+  font-size: var(--fs-h2);
+  margin-bottom: 0.8em;
+  color: var(--text);
+}
+
+.request-path h3 {
+  font-size: var(--fs-h3);
+  margin: 1.8em 0 0.6em;
+  color: var(--text);
+}
+
+.request-path p,
+.request-path li {
+  font-size: inherit;
+}
+
+.request-path ol,
+.request-path ul {
+  padding-left: 1.2rem;
+}
+
+.request-path li {
+  margin-bottom: 0.4em;
+}
+
+/* Diagram */
+#diagram {
+  max-width: 1000px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin: 0;
 }
 
 /* Buttons */
@@ -81,6 +129,10 @@ button {
   color: var(--text);
   z-index: 1000;
   transition: var(--transition);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 
@@ -92,6 +144,7 @@ button {
   height: 34px;
   stroke: currentColor;
   transition: opacity 0.3s, transform 0.5s;
+  position: absolute;
 }
 
 .moon {
@@ -104,12 +157,12 @@ button {
   z-index: 1000;
 }
 
-.hidden-checkbox:checked ~ #dark-toggle-label .sun {
+.hidden-checkbox:checked~#dark-toggle-label .sun {
   opacity: 0;
   transform: rotate(180deg);
 }
 
-.hidden-checkbox:checked ~ #dark-toggle-label .moon {
+.hidden-checkbox:checked~#dark-toggle-label .moon {
   opacity: 1;
   transform: rotate(0);
 }
@@ -144,16 +197,67 @@ button {
 }
 
 /* Variants */
-.circles li:nth-child(1) { left: 25%; width: 80px; height: 80px; }
-.circles li:nth-child(2) { left: 10%; animation: animate 12s linear infinite 2s; }
-.circles li:nth-child(3) { left: 70%; animation-delay: 4s; }
-.circles li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-duration: 18s; }
-.circles li:nth-child(5) { left: 65%; }
-.circles li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
-.circles li:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
-.circles li:nth-child(8) { left: 50%; width: 25px; height: 25px; animation: animate 45s linear infinite 15s; }
-.circles li:nth-child(9) { left: 20%; width: 15px; height: 15px; animation: animate 35s linear infinite 2s; }
-.circles li:nth-child(10){ left: 85%; width: 150px; height: 150px; animation: animate 11s linear infinite; }
+.circles li:nth-child(1) {
+  left: 25%;
+  width: 80px;
+  height: 80px;
+}
+
+.circles li:nth-child(2) {
+  left: 10%;
+  animation: animate 12s linear infinite 2s;
+}
+
+.circles li:nth-child(3) {
+  left: 70%;
+  animation-delay: 4s;
+}
+
+.circles li:nth-child(4) {
+  left: 40%;
+  width: 60px;
+  height: 60px;
+  animation-duration: 18s;
+}
+
+.circles li:nth-child(5) {
+  left: 65%;
+}
+
+.circles li:nth-child(6) {
+  left: 75%;
+  width: 110px;
+  height: 110px;
+  animation-delay: 3s;
+}
+
+.circles li:nth-child(7) {
+  left: 35%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 7s;
+}
+
+.circles li:nth-child(8) {
+  left: 50%;
+  width: 25px;
+  height: 25px;
+  animation: animate 45s linear infinite 15s;
+}
+
+.circles li:nth-child(9) {
+  left: 20%;
+  width: 15px;
+  height: 15px;
+  animation: animate 35s linear infinite 2s;
+}
+
+.circles li:nth-child(10) {
+  left: 85%;
+  width: 150px;
+  height: 150px;
+  animation: animate 11s linear infinite;
+}
 
 /* Effects */
 .float {
@@ -171,7 +275,4 @@ button {
     align-items: flex-start;
   }
 
-  .ascii {
-    display: none;
-  }
 }
