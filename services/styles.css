@@ -1,6 +1,12 @@
 /* * { */
 /*  outline: 1px red solid; */
 /*    } */
+
+:root {
+  --bg-color: rgb(20, 20, 20);
+  --card-color: rgb(23, 23, 23);
+}
+
 body {
   margin: 0;
   background: var(--bg-dark);
@@ -9,12 +15,14 @@ body {
 
 .container {
   position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column; /* add this */
-  justify-content: center;
-  gap: 2rem;
   align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 0px;
+  overflow: hidden;
+  padding: 0px;
+  z-index: 1;
+  gap: 2rem;
   min-height: 90vh;
 }
 
@@ -55,7 +63,7 @@ body {
   color: var(--text);
   text-decoration: none;
 }
- 
+
 .intro {
   color: var(--text-muted);
   margin-top: 3rem;
@@ -126,6 +134,107 @@ button {
     opacity: 0;
     border-radius: 50%;
   }
+}
+
+#cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 916px;
+  width: calc(100% - 20px);
+}
+
+
+.card {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  display: flex;
+  height: 260px;
+  flex-direction: column;
+  position: relative;
+  width: 300px;
+}
+
+
+
+.card>.card-content {
+  background-color: var(--card-color);
+  border-radius: inherit;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  inset: 1px;
+  padding: 10px;
+  position: absolute;
+  z-index: 2;
+}
+
+h1,
+h2,
+h3,
+h4,
+span {
+  font-family: "Rubik", sans-serif;
+  font-weight: 400;
+  margin: 0px;
+}
+
+
+.card-image {
+  align-items: center;
+  display: flex;
+  height: 140px;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.card-image>i {
+  font-size: 6em;
+  opacity: 0.25;
+}
+
+.card-info-wrapper {
+  align-items: center;
+  display: flex;
+  flex-grow: 1;
+  justify-content: flex-start;
+  padding: 0px 20px;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  /* stack vertically */
+  align-items: center;
+  /* center horizontally */
+  text-align: left;
+  /* center text */
+  gap: 1rem;
+  /* spacing between icon and text */
+}
+
+.card-image img {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.card-info>i {
+  font-size: 1em;
+  height: 20px;
+  line-height: 20px;
+}
+
+.card-info-title>h3 {
+  font-size: 1.1em;
+  line-height: 20px;
+}
+
+.card-info-title>h4 {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85em;
+  margin-top: 8px;
 }
 
 /* Background */

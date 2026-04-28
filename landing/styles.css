@@ -16,6 +16,9 @@
   --transition: 0.3s ease-in-out;
 }
 
+#canv {
+  max-width: 800px;
+}
 body {
   margin: 0;
   background: var(--bg-dark);
