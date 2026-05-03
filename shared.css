@@ -1,0 +1,169 @@
+/* Site-wide tokens (JS theme overrides these at runtime). */
+:root {
+  --bg-dark: oklch(0.1 0.1 220);
+  --bg: oklch(0.15 0.1 220);
+  --bg-light: oklch(0.2 0.1 220);
+  --text: oklch(0.96 0.1 220);
+  --text-muted: oklch(0.76 0.1 220);
+  --highlight: oklch(0.5 0.2 220);
+  --border: oklch(0.4 0.2 220);
+  --border-muted: oklch(0.3 0.2 220);
+  --primary: oklch(0.76 0.2 220);
+  --secondary: oklch(0.76 0.2 40);
+  --danger: oklch(0.7 0.2 30);
+  --warning: oklch(0.7 0.2 100);
+  --success: oklch(0.7 0.2 160);
+  --info: oklch(0.7 0.2 260);
+  --transition: 0.3s ease-in-out;
+  --fs-base: clamp(0.95rem, 1.15vw, 1.125rem);
+  --fs-nav-brand: clamp(1rem, 2vw, 1.2rem);
+  --fs-nav-link: clamp(0.875rem, 1.45vw, 0.9375rem);
+}
+
+body {
+  margin: 0;
+  background: var(--bg-dark);
+  color: var(--text);
+  overflow-x: hidden;
+  font-family: "IBM Plex Mono", monospace;
+  font-size: var(--fs-base);
+  font-weight: 400;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  background: var(--bg);
+  border: none;
+  cursor: pointer;
+}
+
+@keyframes animate {
+  to {
+    transform: translateY(-1000px) rotate(720deg);
+    opacity: 0;
+    border-radius: 50%;
+  }
+}
+
+.circles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.circles li {
+  position: absolute;
+  bottom: -150px;
+  width: 20px;
+  height: 20px;
+  list-style: none;
+  background: var(--bg-light);
+  opacity: 0.7;
+  z-index: 0;
+  animation: animate 25s linear infinite;
+}
+
+.circles li:nth-child(1) { left: 25%; width: 80px; height: 80px; }
+.circles li:nth-child(2) { left: 10%; animation: animate 12s linear infinite 2s; }
+.circles li:nth-child(3) { left: 70%; animation-delay: 4s; }
+.circles li:nth-child(4) { left: 40%; width: 60px; height: 60px; animation-duration: 18s; }
+.circles li:nth-child(5) { left: 65%; }
+.circles li:nth-child(6) { left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
+.circles li:nth-child(7) { left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
+.circles li:nth-child(8) { left: 50%; width: 25px; height: 25px; animation: animate 45s linear infinite 15s; }
+.circles li:nth-child(9) { left: 20%; width: 15px; height: 15px; animation: animate 35s linear infinite 2s; }
+.circles li:nth-child(10) { left: 85%; width: 150px; height: 150px; animation: animate 11s linear infinite; }
+
+.float {
+  transition: transform var(--transition);
+}
+
+.float:hover {
+  transform: translateY(-4px);
+}
+
+/* Top navigation (About / Services) */
+.nav {
+  padding: 1rem clamp(1rem, 4vw, 2rem);
+}
+
+.nav ul {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: clamp(1rem, 3vw, 2rem);
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.spacer {
+  flex: 1;
+}
+
+.nav .title,
+.nav a {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.nav .title {
+  color: var(--text);
+  font-size: var(--fs-nav-brand);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: var(--fs-nav-link);
+  font-weight: 500;
+  transition: color var(--transition);
+}
+
+.nav a:hover {
+  color: var(--text);
+}
+
+.toggle-button {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+  position: relative;
+  z-index: 1000;
+  transition: var(--transition);
+}
+
+.icon {
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 34px;
+  height: 34px;
+  stroke: currentColor;
+  transition: opacity 0.3s, transform 0.5s;
+}
+
+.moon {
+  opacity: 0;
+  transform: rotate(-180deg);
+}
+
+.hidden-checkbox {
+  display: none;
+}
+
+.hidden-checkbox:checked ~ #dark-toggle-label .sun {
+  opacity: 0;
+  transform: rotate(180deg);
+}
+
+.hidden-checkbox:checked ~ #dark-toggle-label .moon {
+  opacity: 1;
+  transform: rotate(0);
+}

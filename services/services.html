@@ -3,15 +3,16 @@
 	<head>
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 		<title>Portfolio</title>
 
+		<script src="../theme-boot.js"></script>
 		<link rel="stylesheet" href="styles.css">
-		<script src="script.js" defer></script>
+		<script src="../theme.js" defer></script>
 	</head>
 
 	<body>
@@ -21,8 +22,8 @@
 				<li class="title">Hadi I.O</li>
 				<li class="spacer"></li>
 				<li class="float"><a href="../landing/index.html">Home</a></li>
-				<li class="float"><a href="about.html">About</a></li>
-				<li class="float"><a href="../services/services.html">Services</a></li>
+				<li class="float"><a href="../about/about.html">About</a></li>
+				<li class="float"><a href="services.html">Services</a></li>
 				<li>
 					<input id="dark-toggle" type="checkbox" onclick="toggle()" class="hidden-checkbox">
 					<label id="dark-toggle-label" class="toggle-button" for="dark-toggle">
@@ -127,6 +128,109 @@
 						<div class="card-info">
 							<h3>Proxmox</h3>
 							<h4>Enterprise-grade virtualization platform for VMs and containers with clustering, backups, and web UI</h4>
+						</div>
+					</div>
+				</div>
+				<!-- InfluxDB -->
+				<div class="card">
+					<div class="card-content">
+						<div class="card-image">
+							<img src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/influxdb.svg" alt="InfluxDB">
+						</div>
+						<div class="card-info">
+							<h3>InfluxDB</h3>
+							<h4>High-performance time-series database optimized for metrics, events, and real-time analytics</h4>
+						</div>
+					</div>
+				</div>
+
+				<!-- Termix -->
+				<div class="card">
+					<div class="card-content">
+						<div class="card-image">
+							<img src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/termix.svg" alt="Termix">
+						</div>
+						<div class="card-info">
+							<h3>Termix</h3>
+							<h4>Lightweight terminal emulator for efficient command-line workflows and system management</h4>
+						</div>
+					</div>
+				</div>
+
+				<!-- NixOS -->
+				<div class="card">
+					<div class="card-content">
+						<div class="card-image">
+							<img src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/nixos.svg" alt="NixOS">
+						</div>
+						<div class="card-info">
+							<h3>NixOS</h3>
+							<h4>Declarative Linux distribution with reproducible builds and atomic system configuration</h4>
+						</div>
+					</div>
+				</div>
+
+				<!-- Glance -->
+				<div class="card">
+					<div class="card-content">
+						<div class="card-image">
+							<img src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/glance.svg" alt="Glance">
+						</div>
+						<div class="card-info">
+							<h3>Glance</h3>
+							<h4>Minimal dashboard for aggregating services, bookmarks, and system status in one view</h4>
+						</div>
+					</div>
+				</div>
+
+				<!-- Portainer -->
+				<div class="card">
+					<div class="card-content">
+						<div class="card-image">
+							<img src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/portainer.svg" alt="Portainer">
+						</div>
+						<div class="card-info">
+							<h3>Portainer</h3>
+							<h4>Container management UI for Docker environments with deployment, monitoring, and control tools</h4>
+						</div>
+					</div>
+				</div>
+
+				<!-- Tailscale -->
+				<div class="card">
+					<div class="card-content">
+						<div class="card-image">
+							<img src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/tailscale.svg" alt="Tailscale">
+						</div>
+						<div class="card-info">
+							<h3>Tailscale</h3>
+							<h4>Zero-config mesh VPN using WireGuard for secure remote access across devices and networks</h4>
+						</div>
+					</div>
+				</div>
+
+				<!-- Kasm -->
+				<div class="card">
+					<div class="card-content">
+						<div class="card-image">
+							<img src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/kasm-workspaces.svg" alt="Kasm">
+						</div>
+						<div class="card-info">
+							<h3>Kasm</h3>
+							<h4>Containerized workspace platform delivering secure browser, desktop, and app streaming via web</h4>
+						</div>
+					</div>
+				</div>
+
+				<!-- Apache Guacamole -->
+				<div class="card">
+					<div class="card-content">
+						<div class="card-image">
+							<img src="https://cdn.jsdelivr.net/gh/selfhst/icons@main/svg/apache-guacamole.svg" alt="Guacamole">
+						</div>
+						<div class="card-info">
+							<h3>Guacamole</h3>
+							<h4>Clientless remote desktop gateway supporting RDP, VNC, and SSH through a web browser</h4>
 						</div>
 					</div>
 				</div>
